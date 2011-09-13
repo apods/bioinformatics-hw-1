@@ -49,6 +49,8 @@ def calculate(dna, string, counter)
       $current_best[1] = string
       print_current_best
       return Array.[](max_dist, string)
+    else
+      return $current_best
     end
   end
   if max_dist < $current_best[0]
