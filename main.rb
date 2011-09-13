@@ -52,13 +52,19 @@ def calculate(dna, string, counter)
     end
   end
   if max_dist < $current_best[0]
-    a_ans = calculate(dna, string + "A", counter - 1)
-    c_ans = calculate(dna, string + "C", counter - 1)
-    g_ans = calculate(dna, string + "G", counter - 1)
-    t_ans = calculate(dna, string + "T", counter - 1)
+    nTide = majority(dna.column(dna.line_length - counter), dna.num_lines)
+    if !nTide.nil?
+      return calculate(dna, string + nTide, counter - 1)
+    else
     
-    #return the least of these values
-    return min_sequence(Array.[](a_ans, c_ans, g_ans, t_ans))
+      a_ans = calculate(dna, string + "A", counter - 1)
+      c_ans = calculate(dna, string + "C", counter - 1)
+      g_ans = calculate(dna, string + "G", counter - 1)
+      t_ans = calculate(dna, string + "T", counter - 1)
+      
+      #return the least of these values
+      return min_sequence(Array.[](a_ans, c_ans, g_ans, t_ans))
+    #end
   else
     return $current_best
   end
@@ -85,7 +91,6 @@ start_time  = Time.now.to_s
 puts run(dna)
 puts "Began at: " + start_time
 puts "Ended at: " + Time.now.to_s
-
 
 
 
