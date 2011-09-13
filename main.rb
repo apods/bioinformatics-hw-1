@@ -10,6 +10,11 @@ class DNA
     @sizes.each_index do |i|
       @sizes[i] = @sizes[i].to_i
     end
+    
+    @dna = @dna[1, num_lines]
+    @dna.each_index do |i|
+      @dna[i] = @dna[i].chomp
+    end
   end
   
   #return the number of DNA strands
@@ -24,14 +29,37 @@ class DNA
   
   #print the DNA strands
   def print
-    puts @dna[1, num_lines]
+    puts @dna
+  end
+  
+  def all_strands
+    @dna
+  end
+  
+  def strand(i)
+    @dna[i]
+  end
+  
+  def column(i)
+    #implement
+  end
+end
+
+class ColumnScore
+  attr_accessor :A, :C, :G, :T, :min_dist, :current_best
+  def initialize
+    @A = 0
+    @C = 0
+    @G = 0
+    @T = 0
+    @min_dist = 0
+    @current_best = nil
   end
 end
 
 def hamming_distance(v, w)
   v_arr = v.split("")
   w_arr = w.split("")
-  
   return nil unless v_arr.size == w_arr.size
   return nil unless !v_arr.empty?
   
@@ -44,20 +72,27 @@ def hamming_distance(v, w)
   distance
 end
 
+def total_distance(v, dna)
+  return nil unless v.length == dna.line_size
+  distance = 0
+  strands = dna.all_strands
+  strands.each_index do |i|
+    distance += hamming_distance(v, strands[i])
+  end
+  
+  distance
+end
 
-file = ARGV.first || "input1.txt"
-dna = DNA.new(file)
-dna.print
-puts hamming_distance("a", "a")
+def decide(column)
+  
+end
+
+filename = ARGV.first || "input1.txt"
+puts "Opening " + filename + "..."
+dna = DNA.new(filename)
 
 
-
-
-
-
-
-
-
+puts dna.all_strands
 
 
 
