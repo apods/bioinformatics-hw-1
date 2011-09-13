@@ -56,14 +56,44 @@ def calculate(dna, string, counter)
     if !nTide.nil?
       return calculate(dna, string + nTide, counter - 1)
     else
-    
-      a_ans = calculate(dna, string + "A", counter - 1)
-      c_ans = calculate(dna, string + "C", counter - 1)
-      g_ans = calculate(dna, string + "G", counter - 1)
-      t_ans = calculate(dna, string + "T", counter - 1)
+      cono = dna.line_length - counter
+      puts has(dna.column(cono), "A")
       
+      # Only bother moving down a tree if it actually has a nucleotide in the
+      # next column.  At the very least it is possible to choose at least
+      # one strand that will not have its distance increased.
+      if has(dna.column(cono), "A")
+        a_ans = calculate(dna, string + "A", counter - 1)
+      end
+      if has(dna.column(cono), "C")
+        c_ans = calculate(dna, string + "C", counter - 1)
+      end
+      if has(dna.column(cono), "G")
+        g_ans = calculate(dna, string + "G", counter - 1)
+      end
+      if has(dna.column(cono), "T")
+        t_ans = calculate(dna, string + "T", counter - 1)
+      end
+      
+      sequences = Array.new
+      if !a_ans.nil?
+        sequences << a_ans
+      end
+      if !c_ans.nil?
+        sequences << c_ans
+      end
+      if !g_ans.nil?
+        sequences << g_ans
+      end
+      if !t_ans.nil?
+        sequences << t_ans
+      end
       #return the least of these values
-      return min_sequence(Array.[](a_ans, c_ans, g_ans, t_ans))
+      if !sequences.empty?
+        return min_sequence(sequences)
+      else
+        return $current_best
+      end
     end
   else
     return $current_best
@@ -84,7 +114,6 @@ $current_best[0] = best[0]
 $current_best[1] = best[1]
 
 
-#list = calculate dna, dna.line_length
 print_current_best
 
 start_time  = Time.now.to_s

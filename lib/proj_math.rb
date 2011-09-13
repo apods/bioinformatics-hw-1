@@ -52,8 +52,8 @@ def min_sequence(sequences)
 end
 
 def has(column, nucleotide)
-  column.each do |test|
-    if test == nucleotide
+  for i in 0 .. column.length - 1
+    if column[i] == nucleotide[0]
       return true
     end
   end
