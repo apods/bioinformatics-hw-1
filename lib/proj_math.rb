@@ -51,7 +51,14 @@ def min_sequence(sequences)
   return curr_min
 end
 
-
+def has(column, nucleotide)
+  column.each do |test|
+    if test == nucleotide
+      return true
+    end
+  end
+  return false
+end
 
 
 
