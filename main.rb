@@ -64,7 +64,7 @@ def calculate(dna, string, counter)
       
       #return the least of these values
       return min_sequence(Array.[](a_ans, c_ans, g_ans, t_ans))
-    #end
+    end
   else
     return $current_best
   end
