@@ -44,7 +44,7 @@ end
 def min_sequence(sequences)
   curr_min = sequences[0]
   for i in 1 .. sequences.length - 1
-    if sequences[i][1] < curr_min[1]
+    if sequences[i][0] < curr_min[0]
       curr_min = sequences[i]      
     end
   end
