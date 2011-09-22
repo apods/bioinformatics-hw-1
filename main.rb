@@ -41,19 +41,41 @@ class DNA
   end
   
   def column(i)
-    #implement
+    string = String.new
+    @dna.each do |strand|
+      string += strand[i].chr
+    end
+    string
   end
 end
 
 class ColumnScore
-  attr_accessor :A, :C, :G, :T, :min_dist, :current_best
+  attr_reader :a, :c, :g, :t, :min_dist, :current_best
   def initialize
-    @A = 0
-    @C = 0
-    @G = 0
-    @T = 0
+    @a = 0
+    @c = 0
+    @g = 0
+    @t = 0
     @min_dist = 0
-    @current_best = nil
+    @current_best = "a"
+  end
+  def inc(letter)
+    if letter == 'a'
+      @a += 1
+      check_current_best(@a)
+    elsif letter == 'c'
+      @c += 1
+      check_current_best(@c)
+    elsif letter == 'g'
+      @g += 1
+      check_current_best(@g)
+    elsif letter == 't'
+      @t += 1
+      check_current_best(@t)
+    end
+  end
+  def check_current_best(just_inc)
+    
   end
 end
 
@@ -84,15 +106,28 @@ def total_distance(v, dna)
 end
 
 def decide(column)
-  
+  cs = ColumnScore.new
+#  for i in 1 .. dna.num_lines
+#    if column[i] == 'a'
+#      cs.
+#    elsif
+#      
+#    elsif
+#      
+#    end
+#  end
 end
 
 filename = ARGV.first || "input1.txt"
 puts "Opening " + filename + "..."
 dna = DNA.new(filename)
 
-
-puts dna.all_strands
+opt = String.new
+#for i in 1 .. dna.line_size
+#  opt += decide(dna.column(i))
+#end
+#puts opt
+#puts total_distance(opt, dna)
 
 
 
