@@ -111,15 +111,18 @@ end
 
 def decide(column)
   cs = ColumnScore.new
-#  for i in 1 .. dna.num_lines
-#    if column[i] == 'a'
-#      cs.
-#    elsif
-#      
-#    elsif
-#      
-#    end
-#  end
+  for i in 1 .. dna.num_lines
+    if column[i] == 'a'
+      cs.inc_a
+    elsif column[i] == 'c'
+      cs.inc_c
+    elsif column[i] == 'g'
+      cs.inc_g
+    elsif column[i] == 't'
+      cs.inc_t
+    end
+  end
+  cs.current_best
 end
 
 filename = ARGV.first || "input1.txt"
@@ -127,11 +130,12 @@ puts "Opening " + filename + "..."
 dna = DNA.new(filename)
 
 opt = String.new
-#for i in 1 .. dna.line_size
-#  opt += decide(dna.column(i))
-#end
-#puts opt
-#puts total_distance(opt, dna)
+size = dna.line_size
+for i in 1 .. size
+  opt += "a"
+end
+puts opt
+puts total_distance(opt, dna)
 
 
 
