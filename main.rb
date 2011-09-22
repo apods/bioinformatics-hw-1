@@ -50,33 +50,37 @@ class DNA
 end
 
 class ColumnScore
-  attr_reader :a, :c, :g, :t, :min_dist, :current_best
+  attr_reader :a, :c, :g, :t, :current_best
   def initialize
     @a = 0
     @c = 0
     @g = 0
     @t = 0
-    @min_dist = 0
-    @current_best = "a"
+    @current_best = ["a", @a]
   end
-  def inc(letter)
-    if letter == 'a'
-      @a += 1
-      check_current_best(@a)
-    elsif letter == 'c'
-      @c += 1
-      check_current_best(@c)
-    elsif letter == 'g'
-      @g += 1
-      check_current_best(@g)
-    elsif letter == 't'
-      @t += 1
-      check_current_best(@t)
+  def inc_a
+    @a += 1
+    check_best(@a, "a")
+  end
+  def inc_c
+    @c += 1
+    check_best(@c, "c")
+  end
+  def inc_g
+    @g += 1
+    check_best(@g, "g")
+  end
+  def int_t
+    @t += 1
+    check_best(@t, "t")
+  end
+  def check_best(num, nucleotide)
+    if @current_best[1] < num
+      @current_best[0] = nucleotide
+      @current_best[1] = num
     end
   end
-  def check_current_best(just_inc)
-    
-  end
+  
 end
 
 def hamming_distance(v, w)
