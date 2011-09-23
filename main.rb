@@ -70,7 +70,7 @@ class ColumnScore
     @g += 1
     check_best(@g, "g")
   end
-  def int_t
+  def inc_t
     @t += 1
     check_best(@t, "t")
   end
@@ -109,20 +109,20 @@ def total_distance(v, dna)
   distance
 end
 
-def decide(column)
+def decide(column, num_lines)
   cs = ColumnScore.new
-  for i in 1 .. dna.num_lines
-    if column[i] == 'a'
+  for i in 1 .. num_lines
+    if column[i] == ?A
       cs.inc_a
-    elsif column[i] == 'c'
+    elsif column[i] == ?C
       cs.inc_c
-    elsif column[i] == 'g'
+    elsif column[i] == ?G
       cs.inc_g
-    elsif column[i] == 't'
+    elsif column[i] == ?T
       cs.inc_t
     end
   end
-  cs.current_best
+  cs.current_best[0]
 end
 
 filename = ARGV.first || "input1.txt"
@@ -131,8 +131,8 @@ dna = DNA.new(filename)
 
 opt = String.new
 size = dna.line_size
-for i in 1 .. size
-  opt += "a"
+for i in 0 .. size - 1
+  opt += decide(dna.column(i), dna.num_lines)
 end
 puts opt
 puts total_distance(opt, dna)
