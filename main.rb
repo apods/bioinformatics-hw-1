@@ -25,14 +25,10 @@ $current_worst = nil
 
 def calculate(dna, counter)
   if counter == 0
-    return Array.[](nil)#nil.to_s
+    return Array.[](nil)
   else
     return append(calculate(dna, counter - 1))
   end
-  
-  #return minimum("A" + calculate(dna, counter - 1), "C" + calculate(dna,
-  #  counter - 1), "G" + calculate(dna, counter - 1),
-  #  "T" + calculate(dna, counter-1))   
 end
 
 filename = "./test_cases/" + (ARGV.first || "input1.txt")
@@ -40,8 +36,6 @@ puts "Opening " + filename + "..."
 dna = DNA.new(filename)
 
 list = calculate dna, dna.line_length
-puts list
-puts list.length
 
 
 
