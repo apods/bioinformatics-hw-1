@@ -42,7 +42,8 @@ end
 
 def decide(column, num_lines)
   cs = ColumnScore.new
-  for i in 0 .. num_lines
+  for i in 0 .. num_lines - 1
+    nucleotide = column[i].chr
     if column[i] == ?A
       cs.inc_a
     elsif column[i] == ?C
@@ -51,9 +52,15 @@ def decide(column, num_lines)
       cs.inc_g
     elsif column[i] == ?T
       cs.inc_t
+    elsif column[i]
+      puts "Unrecognized char!\n"
     end
   end
   cs.current_best[0]
+end
+
+def real_ans
+  "CAAATGCGTACTATCTCGTATCAAT"
 end
 
 filename = "./test_cases/" + (ARGV.first || "input1.txt")
@@ -65,14 +72,18 @@ size = dna.line_size
 for i in 0 .. size - 1
   opt += decide(dna.column(i), dna.num_lines)
 end
-puts opt
+#opt = decide(dna.column(23), dna.num_lines)
+opt = "CAAACGCGTACTTTCTCTTATCACT"
+puts dna.column(23)
+puts "Mine: " + opt
+puts "His:  " + String.new(real_ans[23].chr)
 puts total_distance(opt, dna)
-puts alberto_total_distance(opt, dna)
+puts "My dist: " + alberto_total_distance(opt, dna).to_s
+puts total_distance("CAAATGCGTACTATCTCGTATCAAT", dna)
 
 
-
-
-
+#Mine CAAACGCGTA G TTTCTCTTATCACT
+#His  CAAATGCGTA C TATCTCGTATCAAT
 
 
 
