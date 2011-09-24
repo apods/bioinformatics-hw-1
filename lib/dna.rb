@@ -23,7 +23,7 @@ class DNA
   end
   
   #return the size of each line
-  def line_size
+  def line_length
     @sizes[1]
   end
   
