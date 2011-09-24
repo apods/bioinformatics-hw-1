@@ -33,7 +33,7 @@ def max_distance(v, dna)
   c_dist = 0
   strands = dna.all_strands
   strands.each do |strand|
-    c_dist = hamming_distance_ltd v, strand
+    c_dist = hamming_distance_ltd(v, strand)
     if c_dist > distance
       distance = c_dist
     end
@@ -41,7 +41,15 @@ def max_distance(v, dna)
   distance
 end
 
-
+def min_sequence(sequences)
+  curr_min = sequences[0]
+  for i in 1 .. sequences.length - 1
+    if sequences[i][1] < curr_min[1]
+      curr_min = sequences[i]      
+    end
+  end
+  return curr_min
+end
 
 
 
