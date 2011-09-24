@@ -30,6 +30,7 @@ end
 def max_dist(score_a, score_c, score_g, score_t)
   if score_a[0] > (score_c[0] and score_g[0] and score_t[0])
     return score_a
+  end
 end
 
 

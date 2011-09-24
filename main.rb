@@ -5,23 +5,43 @@ def real_ans # for input 5
   "CAAATGCGTACTATCTCGTATCAAT"
 end
 
+def my_ans
+  "CAAACGCTAGTTTCTCTTATCACT"
+end
+
+def append(array)
+  array_length = array.length
+  for i in 0 .. array_length - 1
+    string = array[i].to_s
+    array[i] = "A" + array[i].to_s
+    array << "C" + string
+    array << "G" + string
+    array << "T" + string    
+  end
+  array
+end
+
+$current_worst = nil
+
 def calculate(dna, counter)
   if counter == 0
-    return nil.to_s
+    return Array.[](nil)#nil.to_s
+  else
+    return append(calculate(dna, counter - 1))
   end
   
-  return minimum("A" + calculate(dna, counter - 1), "C" + calculate(dna,
-    counter - 1), "G" + calculate(dna, counter - 1),
-    "T" + calculate(dna, counter-1))   
+  #return minimum("A" + calculate(dna, counter - 1), "C" + calculate(dna,
+  #  counter - 1), "G" + calculate(dna, counter - 1),
+  #  "T" + calculate(dna, counter-1))   
 end
 
 filename = "./test_cases/" + (ARGV.first || "input1.txt")
 puts "Opening " + filename + "..."
 dna = DNA.new(filename)
 
-
-opt = calculate dna, dna.line_length
-
+list = calculate dna, dna.line_length
+puts list
+puts list.length
 
 
 
