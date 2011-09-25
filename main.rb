@@ -1,6 +1,8 @@
 $LOAD_PATH << './lib'
 require "dna"
 require "proj_math"
+require "column_score"
+require "first_best"
 
 def real_ans # for input 5
   "CAAATGCGTACTATCTCGTATCAAT"
@@ -25,7 +27,7 @@ end
 $current_best = Array.[](nil, "")
 
 def print_current_best
-  fp = File.open("BESTS.txt", "w")
+  fp = File.new("BESTS.txt", "w")
     fp.puts "New current best: " + string
     fp.puts "At Distance: " + max_dist.to_s + "\n"
   fp.close
@@ -39,6 +41,7 @@ def calculate(dna, string, counter)
     if max_dist < $current_best[0]
       $current_best[0] = max_dist
       $current_best[1] = string
+      print_current_best
       return Array.[](string, max_dist)
     end
   end
@@ -63,7 +66,9 @@ filename = "./test_cases/" + (ARGV.first || "input1.txt")
 puts "Opening " + filename + "..."
 dna = DNA.new(filename)
 
-$current_best[0] = dna.line_length + 1
+best = first_best(dna)
+$current_best[0] = best[0]
+$current_best[1] = best[1]
 
 #list = calculate dna, dna.line_length
 
