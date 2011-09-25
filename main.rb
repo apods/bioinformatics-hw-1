@@ -28,8 +28,8 @@ $current_best = Array.[](nil, "")
 
 def print_current_best
   fp = File.new("BESTS.txt", "w")
-    fp.puts "New current best: " + string
-    fp.puts "At Distance: " + max_dist.to_s + "\n"
+    fp.puts "New current best: " + $current_best[1]
+    fp.puts "At Distance: " + $current_best[0].to_s + "\n"
   fp.close
 end
 
@@ -72,7 +72,10 @@ $current_best[1] = best[1]
 
 #list = calculate dna, dna.line_length
 
+start_time  = Time.now.to_s
 puts run(dna)
+puts "Began at: " + start_time
+puts "Ended at: " + Time.now.to_s
 
 
 

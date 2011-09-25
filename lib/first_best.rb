@@ -10,8 +10,6 @@ def decide(column, num_lines)
       cs.inc_g
     elsif column[i] == ?T
       cs.inc_t
-    elsif column[i]
-      puts "Unrecognized char!\n"
     end
   end
   cs.curr_best[0]
