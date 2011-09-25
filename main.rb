@@ -33,6 +33,12 @@ def print_current_best
   fp.close
 end
 
+def print_error(string)
+  fp = File.new("ERROR.txt", "w")
+    fp.puts string
+  fp.close
+end
+
 def calculate(dna, string, counter)
   puts "At level " + counter.to_s
   puts "Current string: " + string
@@ -54,7 +60,7 @@ def calculate(dna, string, counter)
     #return the least of these values
     return min_sequence(Array.[](a_ans, c_ans, g_ans, t_ans))
   else
-    return Array.[]("", dna.line_length + 1)
+    return $current_best
   end
 end
 
@@ -67,16 +73,18 @@ puts "Opening " + filename + "..."
 dna = DNA.new(filename)
 
 best = first_best(dna)
+
 $current_best[0] = best[0]
 $current_best[1] = best[1]
 
+
 #list = calculate dna, dna.line_length
+print_current_best
 
 start_time  = Time.now.to_s
 puts run(dna)
 puts "Began at: " + start_time
 puts "Ended at: " + Time.now.to_s
-
 
 
 
