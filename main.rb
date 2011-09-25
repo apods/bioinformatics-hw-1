@@ -24,6 +24,13 @@ end
 
 $current_best = Array.[](nil, "")
 
+def print_current_best
+  fp = File.open("BESTS.txt", "w")
+    fp.puts "New current best: " + string
+    fp.puts "At Distance: " + max_dist.to_s + "\n"
+  fp.close
+end
+
 def calculate(dna, string, counter)
   puts "At level " + counter.to_s
   puts "Current string: " + string
@@ -32,8 +39,6 @@ def calculate(dna, string, counter)
     if max_dist < $current_best[0]
       $current_best[0] = max_dist
       $current_best[1] = string
-      puts "New current best: " + string
-      puts "At Distance: " + max_dist
       return Array.[](string, max_dist)
     end
   end
@@ -63,7 +68,6 @@ $current_best[0] = dna.line_length + 1
 #list = calculate dna, dna.line_length
 
 puts run(dna)
-
 
 
 
