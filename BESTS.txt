@@ -1,2 +1,2 @@
-New current best: CCCCCCCCCC
-At Distance: 6
+New current best: AAAAAAAAAAATATCTCACATGTCT
+At Distance: 17

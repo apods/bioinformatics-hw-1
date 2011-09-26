@@ -1,0 +1,51 @@
+Current string: AAAAAAAAAAATATCTCACATGGA
+At level 1
+Current string: AAAAAAAAAAATATCTCACATGGC
+At level 0
+Current string: AAAAAAAAAAATATCTCACATGGCA
+At level 0
+Current string: AAAAAAAAAAATATCTCACATGGCC
+At level 0
+Current string: AAAAAAAAAAATATCTCACATGGCG
+At level 0
+Current string: AAAAAAAAAAATATCTCACATGGCT
+At level 1
+Current string: AAAAAAAAAAATATCTCACATGGG
+At level 1
+Current string: AAAAAAAAAAATATCTCACATGGT
+At level 2
+Current string: AAAAAAAAAAATATCTCACATGT
+At level 1
+Current string: AAAAAAAAAAATATCTCACATGTA
+At level 1
+Current string: AAAAAAAAAAATATCTCACATGTC
+At level 0
+Current string: AAAAAAAAAAATATCTCACATGTCA
+At level 0
+Current string: AAAAAAAAAAATATCTCACATGTCC
+At level 0
+Current string: AAAAAAAAAAATATCTCACATGTCG
+At level 0
+Current string: AAAAAAAAAAATATCTCACATGTCT
+./lib/proj_math.rb:47:in `<': comparison of Fixnum with String failed (ArgumentError)
+	from ./lib/proj_math.rb:47:in `min_sequence'
+	from ./lib/proj_math.rb:46:in `each'
+	from ./lib/proj_math.rb:46:in `min_sequence'
+	from main.rb:61:in `calculate'
+	from main.rb:56:in `calculate'
+	from main.rb:58:in `calculate'
+	from main.rb:57:in `calculate'
+	from main.rb:58:in `calculate'
+	from main.rb:55:in `calculate'
+	from main.rb:56:in `calculate'
+	from main.rb:55:in `calculate'
+	from main.rb:56:in `calculate'
+	from main.rb:58:in `calculate'
+	from main.rb:56:in `calculate'
+	from main.rb:58:in `calculate'
+	from main.rb:55:in `calculate'
+	from main.rb:58:in `calculate'
+	from main.rb:55:in `calculate'
+	from main.rb:68:in `run'
+	from main.rb:85
+
